@@ -18,7 +18,8 @@ int select_f(char c, va_list params, int count)
         {'c', char_d},
         {'i', int_d},
         {'d', int_d},
-        {'p', pointer_d}
+        {'p', pointer_d},
+        {'n', flag_n_d},
     };
 
     for (int i = 0; list[i].symbols != '\0'; i++) {
