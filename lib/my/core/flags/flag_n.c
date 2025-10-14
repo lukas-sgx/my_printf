@@ -7,7 +7,6 @@
 
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
-#include <stdio.h>
 
 int flag_n_d(va_list params, int count)
 {
