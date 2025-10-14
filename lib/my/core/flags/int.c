@@ -10,6 +10,6 @@
 
 int int_d(va_list params, int count)
 {
-    count += my_put_nbr(va_arg(params, int), &count);
+    count += my_put_nbr(va_arg(params, int));
     return count;
 }
