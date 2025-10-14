@@ -9,6 +9,6 @@
     #define LIB_H
 
 void my_putchar(char c);
-int my_put_nbr(int nb, int *count);
+int my_put_nbr(int nb);
 int my_putstr(char const *str);
 #endif

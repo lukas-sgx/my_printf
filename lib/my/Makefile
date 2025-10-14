@@ -14,7 +14,9 @@ SRC = printf.c \
 	./core/flags/default.c \
 	./core/flags/int.c \
 	./core/flags/percent.c \
-	./core/flags/string.c
+	./core/flags/string.c \
+	./core/flags/pointer.c \
+	./core/import/import.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libmy.a

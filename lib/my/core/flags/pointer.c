@@ -10,6 +10,8 @@
 
 int pointer_d(va_list params, int count)
 {
-    count += my_put_str(va_arg(params, int), &count);
+    char *data = va_arg(params, char*);
+
+    count += my_putstr(data);
     return count;
 }
