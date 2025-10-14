@@ -10,8 +10,9 @@
 
 int pointer_d(va_list params, int count)
 {
-    char *data = va_arg(params, char*);
+    // unsigned long add;
+    // add = (unsigned long) (va_arg(params, void*));
 
-    count += my_putstr(data);
+    count += my_putstr(va_arg(params, char*));
     return count;
 }

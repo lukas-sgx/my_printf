@@ -9,7 +9,7 @@ CC = epiclang
 
 CFLAGS = -Wall -Iinclude
 
-SRC = printf.c \
+SRC = my_printf.c \
 	./core/flags/char.c \
 	./core/flags/default.c \
 	./core/flags/int.c \

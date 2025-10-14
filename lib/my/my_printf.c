@@ -32,7 +32,7 @@ int select_f(char c, va_list params, int count)
     return count;
 }
 
-int printf(const char *format, ...)
+int my_printf(const char *format, ...)
 {
     va_list params;
     int count = 0;
