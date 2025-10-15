@@ -18,7 +18,10 @@ SRC = my_printf.c \
 	./core/flags/pointer.c \
 	./core/flags/flag_n.c \
 	./core/flags/flag_u.c \
-	./core/import/import.c
+	./core/res/my_putchar.c \
+	./core/res/my_putstr.c \
+	./core/res/my_put_nbr.c \
+	./core/res/my_put_unsigned.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libmy.a
