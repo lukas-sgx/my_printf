@@ -9,18 +9,19 @@
 #include "include/myprintf.h"
 #include "include/my.h"
 
+const list_handler_t list[] = {
+    {'%', perc_d},
+    {'s', string_d},
+    {'c', char_d},
+    {'i', int_d},
+    {'d', int_d},
+    {'p', pointer_d},
+    {'n', flag_n_d},
+};
+
 int select_f(char c, va_list params, int count)
 {
     int tmp = 0;
-    list_handler_t list[] = {
-        {'%', perc_d},
-        {'s', string_d},
-        {'c', char_d},
-        {'i', int_d},
-        {'d', int_d},
-        {'p', pointer_d},
-        {'n', flag_n_d},
-    };
 
     for (int i = 0; list[i].symbols != '\0'; i++) {
         if (list[i].symbols == c) {
