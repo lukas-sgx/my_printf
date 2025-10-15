@@ -11,8 +11,7 @@
 
 int flag_u_d(va_list params, int count)
 {
-    int p = va_arg(params, int);
-    p = ABS(p);
-    count += my_put_nbr(p);
+    unsigned int p = va_arg(params, unsigned int);
+    count += my_put_unsigned(p);
     return count;
 }

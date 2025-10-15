@@ -24,6 +24,17 @@ void my_putchar(char c)
     write(1, &c, 1);
 }
 
+int my_put_unsigned(unsigned int nb)
+{
+    int count = 0;
+
+    if (nb >= 10)
+        count = my_put_unsigned(nb / 10);
+    my_putchar((nb % 10) + '0');
+    count++;
+    return count;
+}
+
 static void nbextremum(int nb)
 {
     my_putchar(45);
