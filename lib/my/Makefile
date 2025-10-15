@@ -17,6 +17,7 @@ SRC = my_printf.c \
 	./core/flags/string.c \
 	./core/flags/pointer.c \
 	./core/flags/flag_n.c \
+	./core/flags/flag_u.c \
 	./core/import/import.c
 
 OBJ = $(SRC:.c=.o)
