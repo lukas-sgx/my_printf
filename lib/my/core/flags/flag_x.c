@@ -50,7 +50,7 @@ int flag_x_d(va_list params, int count)
 
     if (!decimal)
         return count;
-    tmp = convert_base(decimal, "0123456789", "0123456789ABCDEF");
+    tmp = convert_base(decimal, "0123456789", "0123456789abcdef");
     free(decimal);
     count += my_putstr(tmp);
     free(tmp);
