@@ -23,5 +23,8 @@ int char_d(va_list params, int count);
 int string_d(va_list params, int count);
 int pointer_d(va_list params, int count);
 int flag_n_d(va_list params, int count);
+int flag_u_d(va_list params, int count);
 int default_d(char c, int count);
+
+    #define ABS(value) (((value) < (0)) ? (-value) : (value))
 #endif
