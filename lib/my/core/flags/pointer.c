@@ -45,9 +45,10 @@ int pointer_d(va_list params, int count)
     void *tmp = va_arg(params, void*);
     unsigned long addr = (unsigned long)tmp;
     char *base;
+    char bfrom[] = "0123456789";
 
     if (my_strcmp(ulong_to_str(addr), "(nil)")){
-        base = convert_base(ulong_to_str(addr), "0123456789", "0123456789abcdef");
+        base = convert_base(ulong_to_str(addr), bfrom, "0123456789abcdef");
         count += my_putstr("0x");
         count += my_putstr(base);
     } else {

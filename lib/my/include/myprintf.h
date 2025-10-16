@@ -25,5 +25,7 @@ int pointer_d(va_list params, int count);
 int flag_n_d(va_list params, int count);
 int flag_u_d(va_list params, int count);
 int flag_x_d(va_list params, int count);
+int flag_xupper_d(va_list params, int count);
+int flag_o_d(va_list params, int count);
 int default_d(char c, int count);
 #endif
