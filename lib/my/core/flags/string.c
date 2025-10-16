@@ -15,6 +15,8 @@ int string_d(va_list params, int count, length_mod_t mod)
         case MOD_NONE:
             count += my_putstr(va_arg(params, char*));
             break;
+        case MOD_L:
+            break;
         default:
             break;
     }
