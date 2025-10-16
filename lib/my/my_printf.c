@@ -21,6 +21,7 @@ const list_handler_t list[] = {
     {'x', flag_x_d},
     {'X', flag_xupper_d},
     {'o', flag_o_d},
+    {'f', flag_f_d},
 };
 
 int select_f(char c, va_list params, int count)
