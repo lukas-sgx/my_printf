@@ -8,7 +8,7 @@
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int flag_f_d(va_list params, int count)
+int flag_f_d(va_list params, int count, length_mod_t mod)
 {
     double nb = va_arg(params, double);
 

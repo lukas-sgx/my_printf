@@ -9,7 +9,7 @@
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int flag_x_d(va_list params, int count)
+int flag_x_d(va_list params, int count, length_mod_t mod)
 {
     unsigned int nb = va_arg(params, unsigned int);
     char *tmp;
@@ -24,7 +24,7 @@ int flag_x_d(va_list params, int count)
     return count;
 }
 
-int flag_xupper_d(va_list params, int count)
+int flag_xupper_d(va_list params, int count, length_mod_t mod)
 {
     unsigned int nb = va_arg(params, unsigned int);
     char *tmp;

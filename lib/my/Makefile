@@ -21,6 +21,7 @@ SRC = my_printf.c \
 	./core/flags/flag_x.c \
 	./core/flags/flag_o.c \
 	./core/flags/flag_f.c \
+	./core/flags/flag_e.c \
 	./core/res/my_putchar.c \
 	./core/res/my_putstr.c \
 	./core/res/my_put_nbr.c \

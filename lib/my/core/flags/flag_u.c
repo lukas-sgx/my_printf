@@ -8,7 +8,7 @@
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int flag_u_d(va_list params, int count)
+int flag_u_d(va_list params, int count, length_mod_t mod)
 {
     unsigned int p = va_arg(params, unsigned int);
 

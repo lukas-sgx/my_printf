@@ -8,7 +8,7 @@
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int default_d(char c, int count)
+int default_d(char c, int count, length_mod_t mod)
 {
     my_putchar('%');
     my_putchar(c);

@@ -5,11 +5,18 @@
 ** MyFile
 */
 
+#include <wchar.h>
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int string_d(va_list params, int count)
+int string_d(va_list params, int count, length_mod_t mod)
 {
-    count += my_putstr(va_arg(params, char*));
+    switch (mod) {
+        case MOD_NONE:
+            count += my_putstr(va_arg(params, char*));
+            break;
+        default:
+            break;
+    }
     return count;
 }
