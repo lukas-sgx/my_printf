@@ -12,12 +12,9 @@
 
 char *ulong_to_str_null(void)
 {
-    char *res = malloc(2);
+    char *res = malloc(sizeof(char) * 6);
 
-    if (!res)
-        return NULL;
-    res[0] = '0';
-    res[1] = '\0';
+    my_strcpy(res, "(nil)");
     return res;
 }
 
@@ -49,8 +46,12 @@ int pointer_d(va_list params, int count)
     unsigned long addr = (unsigned long)tmp;
     char *base;
 
-    base = convert_base(ulong_to_str(addr), "0123456789", "0123456789abcdef");
-    count += my_putstr("0x");
-    count += my_putstr(base);
+    if (my_strcmp(ulong_to_str(addr), "(nil)")){
+        base = convert_base(ulong_to_str(addr), "0123456789", "0123456789abcdef");
+        count += my_putstr("0x");
+        count += my_putstr(base);
+    } else {
+        count += my_putstr(ulong_to_str_null());
+    }
     return count;
 }

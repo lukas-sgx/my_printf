@@ -22,6 +22,8 @@ SRC = my_printf.c \
 	./core/res/my_putchar.c \
 	./core/res/my_putstr.c \
 	./core/res/my_put_nbr.c \
+	./core/res/my_strcpy.c \
+	./core/res/my_strcmp.c \
 	./core/res/my_convert_base.c \
 	./core/res/my_put_unsigned.c
 
