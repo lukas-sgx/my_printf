@@ -11,7 +11,7 @@
 int flag_f_d(va_list params, int count)
 {
     double nb = va_arg(params, double);
-    
+
     count += my_putfloat(nb, 6);
     return count;
 }
