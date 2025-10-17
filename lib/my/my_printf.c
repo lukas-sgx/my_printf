@@ -11,7 +11,7 @@
 
 const list_handler_t list[] = {
     {'%', perc_d},
-    {'s', string_d},
+    {'s', flag_ss_d},
     {'c', char_d},
     {'i', int_d},
     {'d', int_d},
@@ -24,6 +24,8 @@ const list_handler_t list[] = {
     {'f', flag_f_d},
     {'e', flag_e_d},
     {'E', flag_eupper_d},
+    {'b', flag_b_d},
+    {'S', flag_ss_d}
 };
 
 

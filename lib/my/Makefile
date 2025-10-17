@@ -22,6 +22,8 @@ SRC = my_printf.c \
 	./core/flags/flag_o.c \
 	./core/flags/flag_f.c \
 	./core/flags/flag_e.c \
+	./core/flags/flag_b.c \
+	./core/flags/flag_ss.c \
 	./core/res/my_putchar.c \
 	./core/res/my_putstr.c \
 	./core/res/my_put_nbr.c \
@@ -31,6 +33,7 @@ SRC = my_printf.c \
 	./core/res/my_convert_base.c \
 	./core/res/uint_to_str.c \
 	./core/res/my_compute_power_rec.c \
+	./core/res/my_str_to_word_array.c \
 	./core/res/my_put_unsigned.c
 
 OBJ = $(SRC:.c=.o)

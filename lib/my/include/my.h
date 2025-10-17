@@ -18,4 +18,5 @@ int my_strcmp(char const *s1, char const *s2);
 char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 char *uint_to_str(unsigned int n);
 int my_compute_power_rec(int nb, int p);
+char **my_str_to_word_array(char const *str);
 #endif
