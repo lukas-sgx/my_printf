@@ -7,7 +7,7 @@
 
 CC = epiclang
 
-CFLAGS = -Wall -Iinclude
+CFLAGS = -Wall -Ilib/my/include
 
 SRC = ./lib/my/my_printf.c \
 	./lib/my/core/flags/flag_c.c \
