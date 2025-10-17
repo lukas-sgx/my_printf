@@ -1,22 +1,22 @@
 /*
 ** EPITECH PROJECT, 2025
-** MyProject
+** G-CPE-101-NCE-1-1-myprintf-5
 ** File description:
-** MyFile
+** my_put_long_nbr.c
 */
 
 #include "../../include/my.h"
 
-static int my_isnegnbr(int n, int *count)
+static long int my_isneglong(long int n, int *count)
 {
     if (n < 0) {
         my_putchar(45);
         n = -n;
         (*count)++;
-        if (n < -2147483647) {
-            my_putchar('2');
+        if (n < -9223372036854775807L) {
+            my_putchar('9');
             (*count)++;
-            n = 147483648;
+            n = 223372036854775808L;
         } else {
             n = -n;
         }
@@ -24,14 +24,14 @@ static int my_isnegnbr(int n, int *count)
     return n;
 }
 
-int my_put_nbr(int nb)
+int my_put_long_nbr(long int nb)
 {
-    int p = 1;
-    int tmp;
-    int r;
+    long int p = 1;
+    long int tmp;
+    long int r;
     int count = 0;
 
-    nb = my_isnegnbr(nb, &count);
+    nb = my_isneglong(nb, &count);
     tmp = nb;
     count++;
     while (tmp >= 10) {

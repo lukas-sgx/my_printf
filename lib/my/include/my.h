@@ -19,4 +19,6 @@ char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 char *uint_to_str(unsigned int n);
 int my_compute_power_rec(int nb, int p);
 char **my_str_to_word_array(char const *str);
+int my_put_long_nbr(long int nb);
+int my_put_dlong_nbr(long long int nb);
 #endif

@@ -27,6 +27,8 @@ SRC = my_printf.c \
 	./core/res/my_putchar.c \
 	./core/res/my_putstr.c \
 	./core/res/my_put_nbr.c \
+	./core/res/my_put_long_nbr.c \
+	./core/res/my_put_dlong_nbr.c \
 	./core/res/my_putfloat.c \
 	./core/res/my_strcpy.c \
 	./core/res/my_strcmp.c \
