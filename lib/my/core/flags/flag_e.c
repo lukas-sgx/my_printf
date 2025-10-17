@@ -5,19 +5,15 @@
 ** MyFile
 */
 
+#include <stdio.h>
+
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
-int flag_eupper_d(va_list params, const char *format,
-    int count, length_mod_t mod)
+static int value_pos(double nb, int count)
 {
     int e = 0;
-    double nb = va_arg(params, double);
 
-    if (nb < 0) {
-        my_putchar('-');
-        nb = -nb;
-    }
     while (nb >= 10) {
         nb = nb / 10;
         e++;
@@ -27,29 +23,53 @@ int flag_eupper_d(va_list params, const char *format,
     my_putchar('+');
     if (e < 10)
         my_putchar('0');
-    count += my_put_nbr(e);
+    my_put_nbr(e);
     return count;
 }
 
-int flag_e_d(va_list params, const char *format,
-    int count, length_mod_t mod)
+static int value_neg(double nb, int count)
 {
     int e = 0;
+
+    while (nb < 1) {
+        nb *= 10;
+        e++;
+    }
+    my_putfloat(nb, 6);
+    my_putchar('e');
+    my_putchar('-');
+    if (e < 10)
+        my_putchar('0');
+    my_put_nbr(e);
+    return count;
+}
+
+int flag_eupper_d(va_list params, int count, length_mod_t mod)
+{
     double nb = va_arg(params, double);
 
     if (nb < 0) {
         my_putchar('-');
         nb = -nb;
     }
-    while (nb >= 10) {
-        nb = nb / 10;
-        e++;
+    if (nb < 1.0)
+        return value_neg(nb, count);
+    if (nb > 1.0)
+        return value_pos(nb, count);
+    return count;
+}
+
+int flag_e_d(va_list params, int count, length_mod_t mod)
+{
+    double nb = va_arg(params, double);
+
+    if (nb < 0) {
+        my_putchar('-');
+        nb = -nb;
     }
-    my_putfloat(nb, 6);
-    my_putchar('e');
-    my_putchar('+');
-    if (e < 10)
-        my_putchar('0');
-    count += my_put_nbr(e);
+    if (nb < 1.0)
+        return value_neg(nb, count);
+    if (nb > 1.0)
+        return value_pos(nb, count);
     return count;
 }
