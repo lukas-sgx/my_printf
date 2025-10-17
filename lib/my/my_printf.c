@@ -73,7 +73,8 @@ int my_printf(const char *format, ...)
 
     va_start(params, format);
     for (int i = 0; format[i] != '\0'; i++) {
-        if (format[i] == '%' && format[i + 1] != '\0') {
+        if (format[i] == '%' && format[i + 1] != '\0' &&
+            format[i + 1] > 32 && format[i + 1] < 126) {
             i++;
             mod = get_length_modifier(format, &i);
             count = select_f(format[i], params, count, mod);
