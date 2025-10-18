@@ -48,4 +48,6 @@ int flag_b_d(va_list params, int count, length_mod_t mod);
 int flag_ss_d(va_list params, int count, length_mod_t mod);
 int default_d(char c, int count, length_mod_t mod);
 int point_precision(va_list params, int count, length_mod_t mod);
+
+int my_printf(const char *format, ...);
 #endif
