@@ -17,6 +17,8 @@ typedef enum {
     MOD_H,
     MOD_L,
     MOD_LL,
+    MOD_DIEZ,
+
 } length_mod_t;
 typedef int (*flags_t)(va_list, int, length_mod_t mod);
 typedef struct list_handler

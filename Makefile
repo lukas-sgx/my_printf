@@ -12,7 +12,7 @@ CFLAGS = -Wall -Werror
 SRC = ./lib/my/my_printf.c \
 	./lib/my/core/flags/flag_c.c \
 	./lib/my/core/flags/default.c \
-	./lib/my/core/flags/flag_iu.c \
+	./lib/my/core/flags/flag_id.c \
 	./lib/my/core/flags/flag_%.c \
 	./lib/my/core/flags/flag_s.c \
 	./lib/my/core/flags/flag_p.c \

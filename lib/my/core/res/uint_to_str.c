@@ -18,6 +18,50 @@ char *uint_to_str_null(void)
     return res;
 }
 
+char *ulint_to_str(unsigned long int n)
+{
+    char buffer[20];
+    char *res = NULL;
+    int i = 0;
+
+    if (n == 0)
+        return uint_to_str_null();
+    while (n > 0) {
+        buffer[i] = '0' + (n % 10);
+        i++;
+        n /= 10;
+    }
+    res = malloc(i + 1);
+    if (!res)
+        return NULL;
+    for (int j = 0; j < i; j++)
+        res[j] = buffer[i - j - 1];
+    res[i] = '\0';
+    return res;
+}
+
+char *ullint_to_str(unsigned long long int n)
+{
+    char buffer[20];
+    char *res = NULL;
+    int i = 0;
+
+    if (n == 0)
+        return uint_to_str_null();
+    while (n > 0) {
+        buffer[i] = '0' + (n % 10);
+        i++;
+        n /= 10;
+    }
+    res = malloc(i + 1);
+    if (!res)
+        return NULL;
+    for (int j = 0; j < i; j++)
+        res[j] = buffer[i - j - 1];
+    res[i] = '\0';
+    return res;
+}
+
 char *uint_to_str(unsigned int n)
 {
     char buffer[12];
