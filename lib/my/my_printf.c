@@ -25,7 +25,7 @@ const list_handler_t list[] = {
     {'e', flag_e_d},
     {'E', flag_eupper_d},
     {'b', flag_b_d},
-    {'S', flag_ss_d}
+    {'S', flag_ss_d},
 };
 
 

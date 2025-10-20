@@ -5,7 +5,6 @@
 ** MyFile
 */
 
-#include <wchar.h>
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
@@ -16,6 +15,7 @@ int string_d(va_list params, int count, length_mod_t mod)
             count += my_putstr(va_arg(params, char*));
             break;
         case MOD_L:
+            count += my_putwstr(va_arg(params, unsigned int*));
             break;
         default:
             break;
