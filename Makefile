@@ -25,6 +25,7 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/flags/flag_b.c \
 	./lib/my/core/flags/flag_S.c \
 	./lib/my/core/res/my_putchar.c \
+	./lib/my/core/res/my_putwchar.c \
 	./lib/my/core/res/my_putstr.c \
 	./lib/my/core/res/my_put_nbr.c \
 	./lib/my/core/res/my_put_long_nbr.c \
@@ -44,10 +45,8 @@ NAME = libmy.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-
-%.o: .%c
-	$(CC) $(CFLAGS) -c $^ -o $@
+	ar rc $(NAME) $(OBJ)
+	cp $(NAME) ../..
 
 clean:
 	rm -f $(OBJ)

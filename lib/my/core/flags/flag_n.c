@@ -5,8 +5,8 @@
 ** MyFile
 */
 
-#include "../../include/myprintf.h"
-#include "../../include/my.h"
+#include "../../../../include/myprintf.h"
+#include "../../../../include/my.h"
 
 int flag_n_d(va_list params, int count, length_mod_t mod)
 {

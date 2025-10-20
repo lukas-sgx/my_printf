@@ -5,7 +5,7 @@
 ** MyFile
 */
 
-#include "../../include/my.h"
+#include "../../../../include/my.h"
 
 static int my_isnegnbr(int n, int *count)
 {

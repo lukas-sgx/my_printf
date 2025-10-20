@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 
-#include "../../include/myprintf.h"
-#include "../../include/my.h"
+#include "../../../../include/myprintf.h"
+#include "../../../../include/my.h"
 
 static int value_pos(double nb, int count)
 {

@@ -9,6 +9,7 @@
     #define LIB_H
 
 void my_putchar(char c);
+void my_putwchar(unsigned int c);
 int my_put_nbr(int nb);
 int my_putstr(char const *str);
 int my_put_unsigned(unsigned int nb);

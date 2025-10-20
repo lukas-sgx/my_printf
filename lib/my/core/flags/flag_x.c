@@ -6,8 +6,8 @@
 */
 
 #include <stdlib.h>
-#include "../../include/myprintf.h"
-#include "../../include/my.h"
+#include "../../../../include/myprintf.h"
+#include "../../../../include/my.h"
 
 static void md_ll(va_list params, int *count, length_mod_t mod, char *base_to)
 {

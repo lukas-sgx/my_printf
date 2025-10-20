@@ -6,8 +6,8 @@
 */
 
 #include <stdarg.h>
-#include "include/myprintf.h"
-#include "include/my.h"
+#include "../../include/myprintf.h"
+#include "../../include/my.h"
 
 const list_handler_t list[] = {
     {'%', perc_d},

@@ -7,8 +7,8 @@
 
 #include <stdlib.h>
 #include <stdint.h>
-#include "../../include/myprintf.h"
-#include "../../include/my.h"
+#include "../../../../include/myprintf.h"
+#include "../../../../include/my.h"
 
 char *ulong_to_str_null(void)
 {

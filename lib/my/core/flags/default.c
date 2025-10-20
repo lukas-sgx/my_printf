@@ -5,8 +5,8 @@
 ** MyFile
 */
 
-#include "../../include/myprintf.h"
-#include "../../include/my.h"
+#include "../../../../include/myprintf.h"
+#include "../../../../include/my.h"
 
 int default_d(char c, int count, length_mod_t mod)
 {

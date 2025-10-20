@@ -5,7 +5,7 @@
 ** my_put_long_nbr.c
 */
 
-#include "../../include/my.h"
+#include "../../../../include/my.h"
 
 static long int my_isneglong(long int n, int *count)
 {
