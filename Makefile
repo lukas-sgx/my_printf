@@ -37,6 +37,8 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/res/my_strcmp.c \
 	./lib/my/core/res/my_convert_base.c \
 	./lib/my/core/res/uint_to_str.c \
+	./lib/my/core/res/int_to_str.c \
+	./lib/my/core/res/my_strlen.c \
 	./lib/my/core/res/my_compute_power_rec.c \
 	./lib/my/core/res/my_str_to_word_array.c \
 	./lib/my/core/res/my_put_unsigned.c

@@ -28,4 +28,7 @@ int my_put_long_nbr(long int nb);
 int my_put_dlong_nbr(long long int nb);
 int my_put_llunsigned(unsigned long long int nb);
 int my_put_lunsigned(unsigned long int nb);
+char *int_to_str(int n);
+int my_strlen(char *str);
+char *float_to_str(double nb, int precision);
 #endif

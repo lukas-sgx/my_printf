@@ -114,7 +114,7 @@ int flag_xupper_d(va_list params, int count, length_mod_t mod)
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
             decimal = uint_to_str(arg);
-            tmp = convert_base(decimal, "0123456789", "0123456789abcdef");
+            tmp = convert_base(decimal, "0123456789", "0123456789ABCDEF");
             count += my_putstr(tmp);
             break;
         default:

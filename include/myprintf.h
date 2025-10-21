@@ -43,6 +43,7 @@ int flag_x_d(va_list params, int count, length_mod_t mod);
 int flag_xupper_d(va_list params, int count, length_mod_t mod);
 int flag_o_d(va_list params, int count, length_mod_t mod);
 int flag_f_d(va_list params, int count, length_mod_t mod);
+int flag_a_d(va_list params, int count, length_mod_t mod);
 int flag_eupper_d(va_list params, int count, length_mod_t mod);
 int flag_e_d(va_list params,
     int count, length_mod_t mod);
