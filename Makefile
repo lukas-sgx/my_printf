@@ -25,7 +25,6 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/flags/flag_b.c \
 	./lib/my/core/res/my_putchar.c \
 	./lib/my/core/res/my_putwstr.c \
-	./lib/my/core/res/my_puterror.c \
 	./lib/my/core/res/my_putwchar.c \
 	./lib/my/core/res/my_putstr.c \
 	./lib/my/core/res/my_put_nbr.c \
