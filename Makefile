@@ -23,7 +23,6 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/flags/flag_f.c \
 	./lib/my/core/flags/flag_e.c \
 	./lib/my/core/flags/flag_b.c \
-	./lib/my/core/flags/flag_S.c \
 	./lib/my/core/res/my_putchar.c \
 	./lib/my/core/res/my_putwstr.c \
 	./lib/my/core/res/my_puterror.c \
@@ -41,7 +40,8 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/res/my_strlen.c \
 	./lib/my/core/res/my_compute_power_rec.c \
 	./lib/my/core/res/my_str_to_word_array.c \
-	./lib/my/core/res/my_put_unsigned.c
+	./lib/my/core/res/my_put_unsigned.c\
+	./bonus/flag_S.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libmy.a
