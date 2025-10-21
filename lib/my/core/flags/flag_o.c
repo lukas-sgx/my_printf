@@ -83,13 +83,13 @@ static void md_h(va_list params, int *count, length_mod_t mod)
     md_hh(params, count, mod);
 }
 
-int flag_o_d(va_list params, int count, length_mod_t mod)
+int flag_o_d(va_list params, int count, format_flags_t *format_f)
 {
     unsigned int arg;
     char *decimal;
     char *tmp;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
             decimal = uint_to_str(arg);
@@ -99,6 +99,6 @@ int flag_o_d(va_list params, int count, length_mod_t mod)
         default:
             break;
     }
-    md_h(params, &count, mod);
+    md_h(params, &count, format_f->mod);
     return count;
 }

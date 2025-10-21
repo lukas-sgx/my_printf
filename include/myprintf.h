@@ -20,38 +20,45 @@ typedef enum {
     MOD_DIEZ,
 
 } length_mod_t;
-typedef int (*flags_t)(va_list, int, length_mod_t mod);
+
+typedef struct {
+    int hash;
+    int zero;
+    int plus;
+    int minus;
+    int space;
+    int width;
+    int precision;
+    length_mod_t mod;
+} format_flags_t;
+
+typedef int (*flags_t)(va_list, int, format_flags_t *format_f);
 typedef struct list_handler
 {
     char symbols;
     flags_t flag;
 } list_handler_t;
 
-typedef struct {
-    char specifier;
-    length_mod_t modifier;
-} format_info_t;
-
-int perc_d(va_list params, int count, length_mod_t mod);
-int int_d(va_list params, int count, length_mod_t mod);
-int char_d(va_list params, int count, length_mod_t mod);
-int string_d(va_list params, int count, length_mod_t mod);
-int pointer_d(va_list params, int count, length_mod_t mod);
-int flag_n_d(va_list params, int count, length_mod_t mod);
-int flag_u_d(va_list params, int count, length_mod_t mod);
-int flag_x_d(va_list params, int count, length_mod_t mod);
-int flag_xupper_d(va_list params, int count, length_mod_t mod);
-int flag_o_d(va_list params, int count, length_mod_t mod);
-int flag_f_d(va_list params, int count, length_mod_t mod);
-int flag_j_d(va_list params, int count, length_mod_t mod);
-int flag_eupper_d(va_list params, int count, length_mod_t mod);
+int perc_d(va_list params, int count, format_flags_t *format_f);
+int int_d(va_list params, int count, format_flags_t *format_f);
+int char_d(va_list params, int count, format_flags_t *format_f);
+int string_d(va_list params, int count, format_flags_t *format_f);
+int pointer_d(va_list params, int count, format_flags_t *format_f);
+int flag_n_d(va_list params, int count, format_flags_t *format_f);
+int flag_u_d(va_list params, int count, format_flags_t *format_f);
+int flag_x_d(va_list params, int count, format_flags_t *format_f);
+int flag_xupper_d(va_list params, int count, format_flags_t *format_f);
+int flag_o_d(va_list params, int count, format_flags_t *format_f);
+int flag_f_d(va_list params, int count, format_flags_t *format_f);
+int flag_j_d(va_list params, int count, format_flags_t *format_f);
+int flag_eupper_d(va_list params, int count, format_flags_t *format_f);
 int flag_e_d(va_list params,
-    int count, length_mod_t mod);
-int flag_b_d(va_list params, int count, length_mod_t mod);
-int flag_ss_d(va_list params, int count, length_mod_t mod);
-int default_d(char c, int count, length_mod_t mod);
-int point_precision(va_list params, int count, length_mod_t mod);
-int flag_j_d(va_list params, int count, length_mod_t mod);
+    int count, format_flags_t *format_f);
+int flag_b_d(va_list params, int count, format_flags_t *format_f);
+int flag_ss_d(va_list params, int count, format_flags_t *format_f);
+int default_d(char c, int count, format_flags_t *format_f);
+int point_precision(va_list params, int count, format_flags_t *format_f);
+int format_space(format_flags_t *format_f);
 
 int my_printf(const char *format, ...);
 #endif

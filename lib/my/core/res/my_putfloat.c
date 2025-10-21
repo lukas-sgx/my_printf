@@ -32,7 +32,7 @@ void int_state(int power, int *count, int *frac_part, int *int_part)
         (*int_part)++;
         *frac_part = 0;
     }
-    *count += my_put_nbr(*int_part);
+    *count += my_put_nbr(*int_part, 0);
     my_putchar('.');
     (*count)++;
 }
@@ -63,6 +63,6 @@ int my_putfloat(double nb, int precision)
         count++;
         temp /= 10;
     }
-    count += my_put_nbr(frac_part);
+    count += my_put_nbr(frac_part, 0);
     return count;
 }

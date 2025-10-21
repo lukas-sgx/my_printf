@@ -5,7 +5,8 @@
 ** MyFile
 */
 
-#include <stdarg.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "../../include/myprintf.h"
 #include "../../include/my.h"
 
@@ -25,9 +26,9 @@ const list_handler_t list[] = {
     {'e', flag_e_d},
     {'E', flag_eupper_d},
     {'b', flag_b_d},
-    {'S', flag_ss_d}
+    {'S', flag_ss_d},
+    {'\0', 0}
 };
-
 
 length_mod_t get_length_modifier(const char *format, int *i)
 {
@@ -50,34 +51,101 @@ length_mod_t get_length_modifier(const char *format, int *i)
     return MOD_NONE;
 }
 
-int select_f(char c, va_list params, int count, length_mod_t mod)
+static void check_format(char const *format, format_flags_t *format_flags,
+    int const i)
+{
+    switch (format[i]) {
+        case '#':
+            format_flags->hash = 1;
+            break;
+        case '0':
+            format_flags->zero = 1;
+            break;
+        case '+':
+            format_flags->plus = 1;
+            break;
+        case '-':
+            format_flags->minus = 1;
+            break;
+        case ' ':
+            format_flags->space = 1;
+            break;
+        default:
+            break;
+    }
+}
+
+static void add_width(char const *format, format_flags_t *format_flags, int *i)
+{
+    while (format[*i] >= '0' && format[*i] <= '9') {
+        format_flags->width = format_flags->width * 10 + (format[*i] - '0');
+        (*i)++;
+    }
+}
+
+static void add_precision(char const *format, format_flags_t *format_flags,
+    int *i)
+{
+    if (format[*i] == '.') {
+        (*i)++;
+        format_flags->precision = 0;
+        while (format[*i] >= '0' && format[*i] <= '9') {
+            format_flags->precision = format_flags->precision * 10 +
+                (format[*i] - '0');
+            (*i)++;
+        }
+    }
+}
+
+format_flags_t *get_format(char const *format, int *i)
+{
+    format_flags_t *format_flags = malloc(sizeof(format_flags_t));
+
+    if (!format_flags)
+        return NULL;
+    *format_flags = (format_flags_t){0};
+    while (format[*i] == '#' || format[*i] == '0' || format[*i] == '+' ||
+        format[*i] == '-' || format[*i] == ' ') {
+        check_format(format, format_flags, *i);
+        (*i)++;
+    }
+    add_width(format, format_flags, i);
+    add_precision(format, format_flags, i);
+    format_flags->mod = get_length_modifier(format, i);
+    if (format_flags->minus)
+        format_flags->zero = 0;
+    return format_flags;
+}
+
+int select_f(char c, va_list params, int count, format_flags_t *format_f)
 {
     int tmp = 0;
 
     for (int i = 0; list[i].symbols != '\0'; i++) {
         if (list[i].symbols == c) {
-            count = list[i].flag(params, count, mod);
+            count = list[i].flag(params, count, format_f);
             tmp = 1;
         }
     }
     if (tmp == 0)
-        count = default_d(c, count, mod);
+        count = default_d(c, count, format_f);
     return count;
 }
 
 int my_printf(const char *format, ...)
 {
     va_list params;
-    length_mod_t mod;
+    format_flags_t *format_f;
     int count = 0;
 
     va_start(params, format);
     for (int i = 0; format[i] != '\0'; i++) {
         if (format[i] == '%' && format[i + 1] != '\0' &&
-            format[i + 1] > 32 && format[i + 1] < 126) {
+            format[i + 1] >= 32 && format[i + 1] <= 126) {
             i++;
-            mod = get_length_modifier(format, &i);
-            count = select_f(format[i], params, count, mod);
+            format_f = get_format(format, &i);
+            count = select_f(format[i], params, count, format_f);
+            free(format_f);
         } else {
             my_putchar(format[i]);
             count++;

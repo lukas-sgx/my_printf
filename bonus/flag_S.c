@@ -9,12 +9,12 @@
 #include "../include/myprintf.h"
 #include "../include/my.h"
 
-int flag_ss_d(va_list params, int count, length_mod_t mod)
+int flag_ss_d(va_list params, int count, format_flags_t *format_f)
 {
     char **tab;
     char *str;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             str = va_arg(params, char*);
             tab = my_str_to_word_array(str);

@@ -23,7 +23,7 @@ static int value_pos(double nb, int count)
     my_putchar('+');
     if (e < 10)
         my_putchar('0');
-    my_put_nbr(e);
+    my_put_nbr(e, 0);
     return count;
 }
 
@@ -40,11 +40,11 @@ static int value_neg(double nb, int count)
     my_putchar('-');
     if (e < 10)
         my_putchar('0');
-    my_put_nbr(e);
+    my_put_nbr(e, 0);
     return count;
 }
 
-int flag_eupper_d(va_list params, int count, length_mod_t mod)
+int flag_eupper_d(va_list params, int count, format_flags_t *format_f)
 {
     double nb = va_arg(params, double);
 
@@ -59,7 +59,7 @@ int flag_eupper_d(va_list params, int count, length_mod_t mod)
     return count;
 }
 
-int flag_e_d(va_list params, int count, length_mod_t mod)
+int flag_e_d(va_list params, int count, format_flags_t *format_f)
 {
     double nb = va_arg(params, double);
 

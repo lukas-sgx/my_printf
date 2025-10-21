@@ -37,11 +37,11 @@ static void lunsigned(va_list params, int *count, length_mod_t mod)
     llunsigned(params, count, mod);
 }
 
-int flag_u_d(va_list params, int count, length_mod_t mod)
+int flag_u_d(va_list params, int count, format_flags_t *format_f)
 {
     unsigned int arg;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
             count += my_put_unsigned(arg);
@@ -57,6 +57,6 @@ int flag_u_d(va_list params, int count, length_mod_t mod)
         default:
             break;
     }
-    lunsigned(params, &count, mod);
+    lunsigned(params, &count, format_f->mod);
     return count;
 }

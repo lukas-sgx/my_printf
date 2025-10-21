@@ -9,7 +9,7 @@
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
-int flag_b_d(va_list params, int count, length_mod_t mod)
+int flag_b_d(va_list params, int count, format_flags_t *format_f)
 {
     unsigned int nb = va_arg(params, unsigned int);
     char *tmp;

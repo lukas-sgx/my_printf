@@ -8,9 +8,9 @@
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
-int char_d(va_list params, int count, length_mod_t mod)
+int char_d(va_list params, int count, format_flags_t *format_f)
 {
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             my_putchar(va_arg(params, int));
             break;

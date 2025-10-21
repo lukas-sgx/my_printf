@@ -8,9 +8,9 @@
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
-int string_d(va_list params, int count, length_mod_t mod)
+int string_d(va_list params, int count, format_flags_t *format_f)
 {
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             count += my_putstr(va_arg(params, char*));
             break;

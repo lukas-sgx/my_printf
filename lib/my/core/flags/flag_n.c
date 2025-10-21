@@ -67,11 +67,11 @@ void md_h(va_list params, int count, length_mod_t mod)
     md_hh(params, count, mod);
 }
 
-int flag_n_d(va_list params, int count, length_mod_t mod)
+int flag_n_d(va_list params, int count, format_flags_t *format_f)
 {
     int *p;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             p = va_arg(params, int*);
             *p = count;
@@ -79,6 +79,6 @@ int flag_n_d(va_list params, int count, length_mod_t mod)
         default:
             break;
     }
-    md_h(params, count, mod);
+    md_h(params, count, format_f->mod);
     return count;
 }

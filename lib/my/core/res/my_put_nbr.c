@@ -7,7 +7,7 @@
 
 #include "../../../../include/my.h"
 
-static int my_isnegnbr(int n, int *count)
+static int my_isnegnbr(int n, int *count, int show_plus)
 {
     if (n < 0) {
         my_putchar(45);
@@ -20,18 +20,21 @@ static int my_isnegnbr(int n, int *count)
         } else {
             n = -n;
         }
+    } else if (show_plus) {
+        my_putchar('+');
+        (*count)++;
     }
     return n;
 }
 
-int my_put_nbr(int nb)
+int my_put_nbr(int nb, int show_plus)
 {
     int p = 1;
     int tmp;
     int r;
     int count = 0;
 
-    nb = my_isnegnbr(nb, &count);
+    nb = my_isnegnbr(nb, &count, show_plus);
     tmp = nb;
     count++;
     while (tmp >= 10) {

@@ -40,7 +40,7 @@ char *ulong_to_str(unsigned long n)
     return res;
 }
 
-int pointer_d(va_list params, int count, length_mod_t mod)
+int pointer_d(va_list params, int count, format_flags_t *format_f)
 {
     void *tmp = va_arg(params, void*);
     unsigned long addr = (unsigned long)tmp;

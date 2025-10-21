@@ -40,6 +40,7 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/res/my_compute_power_rec.c \
 	./lib/my/core/res/my_str_to_word_array.c \
 	./lib/my/core/res/my_put_unsigned.c\
+	./lib/my/core/formats/format_space.c\
 	./bonus/flag_S.c
 
 OBJ = $(SRC:.c=.o)
@@ -49,7 +50,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	cp $(NAME) ../..
+	cp $(NAME) ..
 
 clean:
 	rm -f $(OBJ)

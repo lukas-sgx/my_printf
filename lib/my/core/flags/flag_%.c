@@ -7,7 +7,7 @@
 
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
-int perc_d(va_list params, int count, length_mod_t mod)
+int perc_d(va_list params, int count, format_flags_t *format_f)
 {
     my_putchar('%');
     count++;

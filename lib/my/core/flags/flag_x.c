@@ -84,13 +84,13 @@ static void md_h(va_list params, int *count, length_mod_t mod, char *base_to)
     md_hh(params, count, mod, base_to);
 }
 
-int flag_x_d(va_list params, int count, length_mod_t mod)
+int flag_x_d(va_list params, int count, format_flags_t *format_f)
 {
     unsigned int arg;
     char *decimal;
     char *tmp;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
             decimal = uint_to_str(arg);
@@ -100,17 +100,17 @@ int flag_x_d(va_list params, int count, length_mod_t mod)
         default:
             break;
     }
-    md_h(params, &count, mod, "0123456789abcdef");
+    md_h(params, &count, format_f->mod, "0123456789abcdef");
     return count;
 }
 
-int flag_xupper_d(va_list params, int count, length_mod_t mod)
+int flag_xupper_d(va_list params, int count, format_flags_t *format_f)
 {
     unsigned int arg;
     char *decimal;
     char *tmp;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
             decimal = uint_to_str(arg);
@@ -120,6 +120,6 @@ int flag_xupper_d(va_list params, int count, length_mod_t mod)
         default:
             break;
     }
-    md_h(params, &count, mod, "0123456789ABCDEF");
+    md_h(params, &count, format_f->mod, "0123456789ABCDEF");
     return count;
 }
