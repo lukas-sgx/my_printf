@@ -45,7 +45,7 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/formats/format_0.c\
 	./lib/my/core/formats/format_plus.c\
 	./lib/my/core/formats/display_format.c\
-	./bonus/flag_S.c
+	./bonus/flag_s_upper.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libmy.a
