@@ -62,7 +62,12 @@ int point_precision(va_list params, int count, format_flags_t *format_f);
 int format_space(format_flags_t *format_f, int count);
 int format_plus(format_flags_t *format_f, int nb);
 int format_zero(format_flags_t *format_f, int count);
-int display_format(int nb, format_flags_t *format_f, int *count);
+int display_format_int(int nb,
+    format_flags_t *format_f, int *count);
+int display_format_lint(long int nb,
+    format_flags_t *format_f, int *count);
+int display_format_dlint(long long int nb,
+    format_flags_t *format_f, int *count);
 
 int my_printf(const char *format, ...);
 #endif

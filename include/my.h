@@ -32,4 +32,6 @@ char *int_to_str(int n);
 int my_strlen(char *str);
 char *float_to_str(double nb, int precision);
 int count_int(int nb);
+int count_lint(long int nb);
+int count_dlint(long long int nb);
 #endif

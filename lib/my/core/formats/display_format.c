@@ -24,7 +24,7 @@ static void show_pad(int pad)
         my_putchar(' ');
 }
 
-static void select_char(char *sign_char, int nb,
+static void select_char(char *sign_char, long long int nb,
     format_flags_t *format_f, int pad)
 {
     if (nb < 0)
@@ -42,7 +42,7 @@ static void select_char(char *sign_char, int nb,
     }
 }
 
-int display_format(int nb, format_flags_t *format_f, int *count)
+int display_format_int(int nb, format_flags_t *format_f, int *count)
 {
     int len = count_int(nb);
     int sign = (nb < 0 || format_f->plus || format_f->space)
@@ -55,6 +55,46 @@ int display_format(int nb, format_flags_t *format_f, int *count)
     if (sign_char)
         my_putchar(sign_char);
     *count += my_put_nbr(nb < 0 ? -nb : nb);
+    if (format_f->minus)
+        for (int i = 0; i < pad; i++)
+            my_putchar(' ');
+    return *count;
+}
+
+int display_format_lint(long int nb,
+    format_flags_t *format_f, int *count)
+{
+    int len = count_lint(nb);
+    int sign = (nb < 0 || format_f->plus || format_f->space)
+        ? 1 : 0;
+    int pad = (format_f->width > len + sign)
+        ? format_f->width - (len + sign) : 0;
+    char sign_char = 0;
+
+    select_char(&sign_char, nb, format_f, pad);
+    if (sign_char)
+        my_putchar(sign_char);
+    *count += my_put_long_nbr(nb < 0 ? -nb : nb);
+    if (format_f->minus)
+        for (int i = 0; i < pad; i++)
+            my_putchar(' ');
+    return *count;
+}
+
+int display_format_dlint(long long int nb,
+    format_flags_t *format_f, int *count)
+{
+    int len = count_dlint(nb);
+    int sign = (nb < 0 || format_f->plus || format_f->space)
+        ? 1 : 0;
+    int pad = (format_f->width > len + sign)
+        ? format_f->width - (len + sign) : 0;
+    char sign_char = 0;
+
+    select_char(&sign_char, nb, format_f, pad);
+    if (sign_char)
+        my_putchar(sign_char);
+    *count += my_put_dlong_nbr(nb < 0 ? -nb : nb);
     if (format_f->minus)
         for (int i = 0; i < pad; i++)
             my_putchar(' ');
