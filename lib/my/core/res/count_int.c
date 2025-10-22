@@ -5,6 +5,8 @@
 ** count_int.c
 */
 
+#include "../../../../include/myprintf.h"
+
 static int my_isnegnbr(int n, int *count)
 {
     if (n < 0) {
@@ -39,7 +41,7 @@ int count_int(int nb)
     return count;
 }
 
-static int my_isneglnbr(long int n, int *count)
+static long int my_isneglnbr(long int n, int *count)
 {
     if (n < 0) {
         n = -n;
@@ -73,7 +75,7 @@ int count_lint(long int nb)
     return count;
 }
 
-static int my_isnegdlnbr(long long int n, int *count)
+static long long int my_isnegdlnbr(long long int n, int *count)
 {
     if (n < 0) {
         n = -n;
