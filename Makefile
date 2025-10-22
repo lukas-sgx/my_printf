@@ -54,7 +54,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	cp $(NAME) ..
 
 clean:
 	rm -f $(OBJ)
