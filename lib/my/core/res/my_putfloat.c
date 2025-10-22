@@ -7,16 +7,6 @@
 
 #include "../../../../include/my.h"
 
-/*
-** EPITECH PROJECT, 2025
-** MyProject
-** File description:
-** my_putfloat
-*/
-
-#include <math.h>
-#include "../../../../include/my.h"
-
 void to_neg(double *nb, int *count)
 {
     if (*nb < 0) {

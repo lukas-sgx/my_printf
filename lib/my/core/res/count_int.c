@@ -13,8 +13,6 @@ static int my_isnegnbr(int n, int *count)
         if (n < -2147483647) {
             (*count)++;
             n = 147483648;
-        } else {
-            n = -n;
         }
     }
     return n;
@@ -46,11 +44,9 @@ static int my_isneglnbr(long int n, int *count)
     if (n < 0) {
         n = -n;
         (*count)++;
-        if (n < -2147483647) {
+        if (n < -9223372036854775807L) {
             (*count)++;
-            n = 147483648;
-        } else {
-            n = -n;
+            n = 223372036854775808L;
         }
     }
     return n;
@@ -58,8 +54,8 @@ static int my_isneglnbr(long int n, int *count)
 
 int count_lint(long int nb)
 {
-    int p = 1;
-    int tmp;
+    long int p = 1;
+    long int tmp;
     int count = 0;
 
     nb = my_isneglnbr(nb, &count);
@@ -82,11 +78,9 @@ static int my_isnegdlnbr(long long int n, int *count)
     if (n < 0) {
         n = -n;
         (*count)++;
-        if (n < -9223372036854775807) {
+        if (n < -9223372036854775807L) {
             (*count)++;
-            n = 223372036854775808;
-        } else {
-            n = -n;
+            n = 223372036854775808LL;
         }
     }
     return n;
@@ -94,8 +88,8 @@ static int my_isnegdlnbr(long long int n, int *count)
 
 int count_dlint(long long int nb)
 {
-    int p = 1;
-    int tmp;
+    long long int p = 1;
+    long long int tmp;
     int count = 0;
 
     nb = my_isnegdlnbr(nb, &count);
