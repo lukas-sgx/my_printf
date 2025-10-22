@@ -40,7 +40,11 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/res/my_compute_power_rec.c \
 	./lib/my/core/res/my_str_to_word_array.c \
 	./lib/my/core/res/my_put_unsigned.c\
+	./lib/my/core/res/count_int.c\
 	./lib/my/core/formats/format_space.c\
+	./lib/my/core/formats/format_0.c\
+	./lib/my/core/formats/format_plus.c\
+	./lib/my/core/formats/display_format.c\
 	./bonus/flag_S.c
 
 OBJ = $(SRC:.c=.o)

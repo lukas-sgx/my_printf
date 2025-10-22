@@ -7,7 +7,7 @@
 
 #include "../../../../include/my.h"
 
-static long int my_isneglong(long int n, int *count, int show_plus)
+static long int my_isneglong(long int n, int *count)
 {
     if (n < 0) {
         my_putchar(45);
@@ -20,21 +20,18 @@ static long int my_isneglong(long int n, int *count, int show_plus)
         } else {
             n = -n;
         }
-    } else if (show_plus) {
-        my_putchar('+');
-        (*count)++;
     }
     return n;
 }
 
-int my_put_long_nbr(long int nb, int show_plus)
+int my_put_long_nbr(long int nb)
 {
     long int p = 1;
     long int tmp;
     long int r;
     int count = 0;
 
-    nb = my_isneglong(nb, &count, show_plus);
+    nb = my_isneglong(nb, &count);
     tmp = nb;
     count++;
     while (tmp >= 10) {

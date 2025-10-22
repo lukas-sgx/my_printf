@@ -2,19 +2,19 @@
 ** EPITECH PROJECT, 2025
 ** MyProject
 ** File description:
-** format_space.c
+** format_0.c
 */
 
 #include "../../../../include/my.h"
 #include "../../../../include/myprintf.h"
 
-int format_space(format_flags_t *format_f, int count)
+int format_zero(format_flags_t *format_f, int count)
 {
     int printed = 0;
 
-    if (format_f->space && !format_f->plus) {
+    if (format_f->zero) {
         for (int i = 0; i < format_f->width - count; i++) {
-            my_putchar(' ');
+            my_putchar('0');
             printed++;
         }
     }

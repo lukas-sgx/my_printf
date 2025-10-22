@@ -21,14 +21,15 @@ typedef enum {
 
 } length_mod_t;
 
-typedef struct {
+typedef struct format_flags_s {
     int hash;
     int zero;
-    int plus;
     int minus;
+    int plus;
     int space;
     int width;
     int precision;
+    int c;
     length_mod_t mod;
 } format_flags_t;
 
@@ -58,7 +59,10 @@ int flag_b_d(va_list params, int count, format_flags_t *format_f);
 int flag_ss_d(va_list params, int count, format_flags_t *format_f);
 int default_d(char c, int count, format_flags_t *format_f);
 int point_precision(va_list params, int count, format_flags_t *format_f);
-int format_space(format_flags_t *format_f);
+int format_space(format_flags_t *format_f, int count);
+int format_plus(format_flags_t *format_f, int nb);
+int format_zero(format_flags_t *format_f, int count);
+int display_format(int nb, format_flags_t *format_f, int *count);
 
 int my_printf(const char *format, ...);
 #endif

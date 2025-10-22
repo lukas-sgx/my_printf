@@ -23,7 +23,7 @@ static int value_pos(double nb, int count)
     my_putchar('+');
     if (e < 10)
         my_putchar('0');
-    my_put_nbr(e, 0);
+    my_put_nbr(e);
     return count;
 }
 
@@ -40,7 +40,7 @@ static int value_neg(double nb, int count)
     my_putchar('-');
     if (e < 10)
         my_putchar('0');
-    my_put_nbr(e, 0);
+    my_put_nbr(e);
     return count;
 }
 

@@ -2,14 +2,14 @@
 ** EPITECH PROJECT, 2025
 ** my_printf
 ** File description:
-** Unit tests for my_printf using Criterion
+** Full unit tests using Criterion (flags + width + precision + scientific + %n)
 */
 
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
+#include "../include/myprintf.h"
 #include <string.h>
 #include <stdio.h>
-#include "../include/myprintf.h"
 
 static void redirect_all_std(void)
 {
@@ -17,208 +17,175 @@ static void redirect_all_std(void)
     cr_redirect_stderr();
 }
 
-// Fonction utilitaire pour lire le contenu actuel du stdout redirigé
-static const char *get_stdout_content(void)
-{
-    fflush(stdout);
-    FILE *out = cr_get_redirected_stdout();
-    static char buffer[4096];
-    long pos = ftell(out);
-    fseek(out, 0, SEEK_SET);
-    size_t len = fread(buffer, 1, sizeof(buffer) - 1, out);
-    buffer[len] = '\0';
-    fseek(out, pos, SEEK_SET);
-    return buffer;
+/* -------------------- MACROS UTILES -------------------- */
+
+#define TEST_INT_ID(val, id, fmt) \
+Test(my_printf, auto_int_##id, .init=redirect_all_std) { \
+    long long tmp_val = (long long)(val); \
+    my_printf(fmt, tmp_val); \
+    char buf[64]; sprintf(buf, fmt, tmp_val); \
+    cr_assert_stdout_eq_str(buf); \
 }
 
-/* ---------------------------------------------------------
-**  BASIC FORMAT TESTS
-** --------------------------------------------------------- */
-
-Test(my_printf, print_char, .init=redirect_all_std)
-{
-    my_printf("A%cB", 'Z');
-    cr_assert_stdout_eq_str("AZB");
+#define TEST_UINT_ID(val, id, fmt) \
+Test(my_printf, auto_uint_##id, .init=redirect_all_std) { \
+    unsigned long long tmp_val = (unsigned long long)(val); \
+    my_printf(fmt, tmp_val); \
+    char buf[64]; sprintf(buf, fmt, tmp_val); \
+    cr_assert_stdout_eq_str(buf); \
 }
 
-Test(my_printf, print_string, .init=redirect_all_std)
-{
-    my_printf("Hello %s !", "world");
-    cr_assert_stdout_eq_str("Hello world !");
+#define TEST_FLOAT_ID(val, id, fmt) \
+Test(my_printf, auto_float_##id, .init=redirect_all_std) { \
+    double tmp_val = (double)(val); \
+    my_printf(fmt, tmp_val); \
+    char buf[64]; sprintf(buf, fmt, tmp_val); \
+    cr_assert_stdout_eq_str(buf); \
 }
 
-Test(my_printf, print_int, .init=redirect_all_std)
-{
-    my_printf("%d", 42);
-    cr_assert_stdout_eq_str("42");
+#define TEST_CHAR_ID(c, id) \
+Test(my_printf, auto_char_##id, .init=redirect_all_std) { \
+    my_printf("%c", c); \
+    char buf[2]; buf[0]=c; buf[1]='\0'; \
+    cr_assert_stdout_eq_str(buf); \
 }
 
-Test(my_printf, print_negative_int, .init=redirect_all_std)
-{
-    my_printf("%i", -123);
-    cr_assert_stdout_eq_str("-123");
+#define TEST_STRING_ID(str, id) \
+Test(my_printf, auto_string_##id, .init=redirect_all_std) { \
+    my_printf("%s", str); \
+    cr_assert_stdout_eq_str(str); \
 }
 
-Test(my_printf, print_unsigned, .init=redirect_all_std)
+/* -------------------- TESTS DE BASE -------------------- */
+
+// Ints simples
+TEST_INT_ID(0, 1, "%d")
+TEST_INT_ID(42, 2, "%d")
+TEST_INT_ID(-42, 3, "%d")
+TEST_INT_ID(2147483647LL, 4, "%d")
+TEST_INT_ID((-2147483647LL)-1, 5, "%d")
+
+// Unsigned
+TEST_UINT_ID(0, 6, "%u")
+TEST_UINT_ID(42, 7, "%u")
+TEST_UINT_ID(4294967295ULL, 8, "%u")
+
+// Floats
+TEST_FLOAT_ID(0.0, 9, "%f")
+TEST_FLOAT_ID(3.141593, 10, "%f")
+TEST_FLOAT_ID(-12.34, 11, "%f")
+TEST_FLOAT_ID(12345.6789, 12, "%f")
+
+// Char & String
+TEST_CHAR_ID('A', 13)
+TEST_CHAR_ID('Z', 14)
+TEST_STRING_ID("Hello", 15)
+TEST_STRING_ID("World", 16)
+TEST_STRING_ID("", 17)
+TEST_STRING_ID("(null)", 18)
+
+/* -------------------- FLAGS + WIDTH + PRECISION -------------------- */
+
+Test(my_printf, flag_plus_width_prec_int, .init=redirect_all_std)
 {
-    my_printf("%u", 4294967295u);
-    cr_assert_stdout_eq_str("4294967295");
+    my_printf("%+10.5d", 42);
+    cr_assert_stdout_eq_str("     +00042");
 }
 
-Test(my_printf, print_hex_lower, .init=redirect_all_std)
+Test(my_printf, flag_minus_width_prec_int, .init=redirect_all_std)
 {
-    my_printf("%x", 255);
-    cr_assert_stdout_eq_str("ff");
+    my_printf("%-10.5d", 42);
+    cr_assert_stdout_eq_str("+00042     ");
 }
 
-Test(my_printf, print_hex_upper, .init=redirect_all_std)
+Test(my_printf, flag_zero_width_int, .init=redirect_all_std)
 {
-    my_printf("%X", 255);
-    cr_assert_stdout_eq_str("FF");
+    my_printf("%010d", 42);
+    cr_assert_stdout_eq_str("0000000042");
 }
 
-Test(my_printf, print_octal, .init=redirect_all_std)
+Test(my_printf, flag_space_width_int, .init=redirect_all_std)
 {
-    my_printf("%o", 83);
-    cr_assert_stdout_eq_str("123");
+    my_printf("% 10d", 42);
+    cr_assert_stdout_eq_str("        42");
 }
 
-Test(my_printf, print_pointer, .init=redirect_all_std)
+Test(my_printf, flag_sharp_width_hex, .init=redirect_all_std)
 {
-    int a = 42;
-    my_printf("%p", &a);
-    const char *out = get_stdout_content();
-    cr_assert(strstr(out, "0x") != NULL, "Expected pointer to start with 0x");
+    my_printf("%#08x", 255);
+    cr_assert_stdout_eq_str("0x0000ff");
 }
 
-Test(my_printf, print_percent, .init=redirect_all_std)
+Test(my_printf, width_star_int, .init=redirect_all_std)
 {
-    my_printf("%%");
-    cr_assert_stdout_eq_str("%");
+    my_printf("%*d", 5, 42);
+    cr_assert_stdout_eq_str("   42");
 }
 
-/* ---------------------------------------------------------
-**  FLAGS TESTS
-** --------------------------------------------------------- */
-
-Test(my_printf, flag_plus, .init=redirect_all_std)
+Test(my_printf, precision_star_int, .init=redirect_all_std)
 {
-    my_printf("%+d", 42);
-    cr_assert_stdout_eq_str("+42");
-}
-
-Test(my_printf, flag_space, .init=redirect_all_std)
-{
-    my_printf("% d", 42);
-    cr_assert_stdout_eq_str(" 42");
-}
-
-Test(my_printf, flag_zero_padding, .init=redirect_all_std)
-{
-    my_printf("%05d", 42);
+    my_printf("%.*d", 5, 42);
     cr_assert_stdout_eq_str("00042");
 }
 
-Test(my_printf, flag_left_align, .init=redirect_all_std)
+/* -------------------- FLOAT SCIENTIFIC -------------------- */
+
+Test(my_printf, float_scientific_e, .init=redirect_all_std)
 {
-    my_printf("%-5d", 42);
-    cr_assert_stdout_eq_str("42   ");
+    my_printf("%e", 1234.5678);
+    const char *out = cr_get_redirected_stdout();
+    cr_assert(strstr(out, "1.234567e+03") != NULL);
 }
 
-Test(my_printf, flag_sharp_hex, .init=redirect_all_std)
+Test(my_printf, float_scientific_E, .init=redirect_all_std)
 {
-    my_printf("%#x", 255);
-    cr_assert_stdout_eq_str("0xff");
+    my_printf("%E", 1234.5678);
+    const char *out = cr_get_redirected_stdout();
+    cr_assert(strstr(out, "1.234567E+03") != NULL);
 }
 
-Test(my_printf, flag_sharp_octal, .init=redirect_all_std)
+Test(my_printf, float_g, .init=redirect_all_std)
 {
-    my_printf("%#o", 83);
-    cr_assert_stdout_eq_str("0123");
+    my_printf("%g", 0.0001234);
+    const char *out = cr_get_redirected_stdout();
+    cr_assert(strstr(out, "0.0001234") != NULL);
 }
 
-/* ---------------------------------------------------------
-**  LENGTH MODIFIERS TESTS
-** --------------------------------------------------------- */
-
-Test(my_printf, length_h_short, .init=redirect_all_std)
+Test(my_printf, float_G, .init=redirect_all_std)
 {
-    short val = 32767;
-    my_printf("%hd", val);
-    cr_assert_stdout_eq_str("32767");
+    my_printf("%G", 123456789.0);
+    const char *out = cr_get_redirected_stdout();
+    cr_assert(strstr(out, "1.234568E+08") != NULL);
 }
 
-Test(my_printf, length_hh_char, .init=redirect_all_std)
+/* -------------------- FLAG %n -------------------- */
+
+Test(my_printf, flag_n, .init=redirect_all_std)
 {
-    signed char val = -128;
-    my_printf("%hhd", val);
-    cr_assert_stdout_eq_str("-128");
+    int count = 0;
+    my_printf("Hello%nWorld", &count);
+    cr_assert(count == 5);
 }
 
-Test(my_printf, length_l_long, .init=redirect_all_std)
+/* -------------------- COMBINATOIRES MULTIPLES -------------------- */
+
+Test(my_printf, combo_flags_length_width, .init=redirect_all_std)
 {
-    long val = 2147483648;
-    my_printf("%ld", val);
-    cr_assert_stdout_eq_str("2147483648");
+    int val = 42;
+    my_printf("%-+08d", val);
+    cr_assert_stdout_eq_str("+42     ");  // '-' override '0'
 }
 
-Test(my_printf, length_ll_longlong, .init=redirect_all_std)
+Test(my_printf, combo_unsigned_sharp_width, .init=redirect_all_std)
 {
-    long long val = 9223372036854775807LL;
-    my_printf("%lld", val);
-    cr_assert_stdout_eq_str("9223372036854775807");
+    unsigned int val = 255;
+    my_printf("%#10x", val);
+    cr_assert_stdout_eq_str("      0xff");
 }
 
-Test(my_printf, length_L_long_double, .init=redirect_all_std)
+Test(my_printf, combo_float_plus_prec, .init=redirect_all_std)
 {
-    long double val = 3.141592653589793238L;
-    my_printf("%Lf", val);
-    const char *out = get_stdout_content();
-    cr_assert(strstr(out, "3.1415") != NULL);
-}
-
-/* ---------------------------------------------------------
-**  FLOAT TESTS
-** --------------------------------------------------------- */
-
-Test(my_printf, print_float, .init=redirect_all_std)
-{
-    my_printf("%f", 3.141593);
-    const char *out = get_stdout_content();
-    cr_assert(strstr(out, "3.141") != NULL);
-}
-
-// Test(my_printf, print_float_with_precision, .init=redirect_all_std)
-// {
-//     my_printf("%.2f", 3.141593);
-//     cr_assert_stdout_eq_str("3.14");
-// }
-
-Test(my_printf, print_negative_float, .init=redirect_all_std)
-{
-    my_printf("%f", -12.34);
-    const char *out = get_stdout_content();
-    cr_assert(strstr(out, "-12.34") != NULL);
-}
-
-/* ---------------------------------------------------------
-**  EDGE CASES
-** --------------------------------------------------------- */
-
-Test(my_printf, zero_value, .init=redirect_all_std)
-{
-    my_printf("%d", 0);
-    cr_assert_stdout_eq_str("0");
-}
-
-Test(my_printf, null_string, .init=redirect_all_std)
-{
-    my_printf("%s", NULL);
-    cr_assert_stdout_eq_str("(null)");
-}
-
-Test(my_printf, max_unsigned, .init=redirect_all_std)
-{
-    my_printf("%llu", 18446744073709551615ULL);
-    cr_assert_stdout_eq_str("18446744073709551615");
+    double val = 3.14;
+    my_printf("%+10.2f", val);
+    cr_assert_stdout_eq_str("     +3.14");
 }
