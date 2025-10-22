@@ -89,7 +89,6 @@ int display_format_dlint(long long int nb,
     format_flags_t *format_f, int *count)
 {
     int len = count_dlint(nb);
-    printf("%lli\n", nb);
     int sign = (nb < 0 || format_f->plus || format_f->space)
         ? 1 : 0;
     int pad = (format_f->width > len + sign)
