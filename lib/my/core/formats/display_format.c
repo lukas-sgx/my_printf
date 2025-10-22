@@ -27,11 +27,9 @@ static void show_pad(int pad)
 static void select_char(char *sign_char, long long int nb,
     format_flags_t *format_f, int pad)
 {
-    if (nb < 0)
-        *sign_char = '-';
     if (format_f->plus && nb > 0)
         *sign_char = '+';
-    else if (format_f->space)
+    if (format_f->space && !format_f->minus)
         *sign_char = ' ';
     if (!format_f->minus) {
         if (format_f->zero) {
