@@ -50,32 +50,29 @@ static int value_neg(double nb, int count, int upper)
     return count;
 }
 
-int flag_eupper_d(va_list params, int count, format_flags_t *format_f)
+static int my_putscientific(int nb , int count, int upper)
 {
-    double nb = va_arg(params, double);
-
     if (nb < 0) {
         my_putchar('-');
         nb = -nb;
     }
     if (nb < 1.0)
-        return value_neg(nb, count, 1);
+        return value_neg(nb, count, upper);
     if (nb > 1.0)
-        return value_pos(nb, count, 1);
+        return value_pos(nb, count, upper);
     return count;
+}
+
+int flag_eupper_d(va_list params, int count, format_flags_t *format_f)
+{
+    double nb = va_arg(params, double);
+
+    return my_putscientific(nb, count, 1);
 }
 
 int flag_e_d(va_list params, int count, format_flags_t *format_f)
 {
     double nb = va_arg(params, double);
 
-    if (nb < 0) {
-        my_putchar('-');
-        nb = -nb;
-    }
-    if (nb < 1.0)
-        return value_neg(nb, count, 0);
-    if (nb > 1.0)
-        return value_pos(nb, count, 0);
-    return count;
+    return my_putscientific(nb, count, 0);
 }
