@@ -89,7 +89,7 @@ TEST_STRING_ID("(null)", 18)
 Test(my_printf, flag_plus_width_prec_int, .init=redirect_all_std)
 {
     my_printf("%+10.5d", 42);
-    cr_assert_stdout_eq_str("     +00042");
+    cr_assert_stdout_eq_str("    +00042");
 }
 
 Test(my_printf, flag_minus_width_prec_int, .init=redirect_all_std)
