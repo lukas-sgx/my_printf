@@ -118,8 +118,8 @@ Test(my_printf, flag_sharp_width_hex, .init=redirect_all_std)
 
 Test(my_printf, width_star_int, .init=redirect_all_std)
 {
-    my_printf("%*d", 5, 42);
-    cr_assert_stdout_eq_str("   42");
+    my_printf("% -0+12.15ilkkdk",42);
+    cr_assert_stdout_eq_str("+000000000000042lkkdk");
 }
 
 Test(my_printf, precision_star_int, .init=redirect_all_std)
