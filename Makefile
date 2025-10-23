@@ -49,6 +49,7 @@ SRC = ./lib/my/my_printf.c \
 
 OBJ = $(SRC:.c=.o)
 NAME = libmy.a
+TEST=unit_tests
 
 all: $(NAME)
 
@@ -62,3 +63,9 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+unit_tests: fclean all
+	$(CC) tests/test_my_printf.c $(NAME) --coverage -lcriterion -o $(TEST)
+
+tests_run: unit_tests
+	./$(TEST)
