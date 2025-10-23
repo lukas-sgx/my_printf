@@ -52,6 +52,14 @@ static void display_min(format_flags_t *format_f, char *nb)
             my_putchar(' ');
 }
 
+static void display_hash(format_flags_t *format_f, int upper)
+{
+    if (format_f->hash && format_f->zero && !upper)
+        my_putstr("0x");
+    else if (format_f->hash && format_f->zero && upper)
+        my_putstr("0x");
+}
+
 int display_format_str(char *nb,
     format_flags_t *format_f, int *count, int upper)
 {
@@ -61,15 +69,15 @@ int display_format_str(char *nb,
     int pad = (format_f->width > len + precision)
         ? format_f->width - (len + precision) : 0;
 
-    if (format_f->hash && upper) {
-        my_putstr("0X");
+    display_hash(format_f, upper);
+    if (format_f->hash)
         pad -= 2;
-    } else if (format_f->hash && !upper) {
-        my_putstr("0x");
-        pad -= 2;
-    }
     format_f->precision = precision;
     select_min(format_f, pad);
+    if (format_f->hash && upper && !format_f->zero)
+        my_putstr("0X");
+    else if (format_f->hash && !upper && !format_f->zero)
+        my_putstr("0x");
     *count += my_putstr(nb);
     display_min(format_f, nb);
     return *count;
