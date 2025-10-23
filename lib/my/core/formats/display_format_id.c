@@ -38,7 +38,7 @@ static void display_precision(format_flags_t *format_f)
 static void select_char(char *sign_char, long long int nb,
     format_flags_t *format_f, int pad)
 {
-    if (nb < 0)
+    if (nb < 0 && nb > -2147483648)
         *sign_char = '-';
     if (format_f->plus && nb > 0)
         *sign_char = '+';
