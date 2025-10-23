@@ -78,6 +78,9 @@ int display_format_udlint(unsigned long long int nb,
     format_flags_t *format_f, int *count);
 int display_format_str_o(char *nb,
     format_flags_t *format_f, int *count);
+int display_format_double(double nb,
+    format_flags_t *format_f, int *count);
+int count_double(double nb, int precision);
 
 int my_printf(const char *format, ...);
 #endif

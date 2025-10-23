@@ -23,6 +23,7 @@ const list_handler_t list[] = {
     {'X', flag_xupper_d},
     {'o', flag_o_d},
     {'f', flag_f_d},
+    {'F', flag_f_d},
     {'e', flag_e_d},
     {'E', flag_eupper_d},
     {'b', flag_b_d},
@@ -90,12 +91,18 @@ static void add_precision(char const *format, format_flags_t *format_flags,
 {
     if (format[*i] == '.') {
         (*i)++;
+        if (format[*i] == 'f' || format[*i] == 'F') {
+            format_flags->precision = -2;
+            return;
+        }
         format_flags->precision = 0;
         while (format[*i] >= '0' && format[*i] <= '9') {
             format_flags->precision = format_flags->precision * 10 +
                 (format[*i] - '0');
             (*i)++;
         }
+    } else if (format[*i] == 'f' || format[*i] == 'F') {
+        format_flags->precision = -1;
     }
 }
 

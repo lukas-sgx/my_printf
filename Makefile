@@ -42,10 +42,12 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/res/my_put_unsigned.c\
 	./lib/my/core/res/count_int.c\
 	./lib/my/core/res/count_uint.c\
+	./lib/my/core/res/count_double.c\
 	./lib/my/core/formats/display_format_id.c\
 	./lib/my/core/formats/display_format_x.c\
 	./lib/my/core/formats/display_format_u.c\
 	./lib/my/core/formats/display_format_o.c\
+	./lib/my/core/formats/display_format_f.c\
 	./bonus/flag_s_upper.c
 
 OBJ = $(SRC:.c=.o)

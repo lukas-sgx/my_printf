@@ -11,8 +11,12 @@
 
 static void display_precision(format_flags_t *format_f)
 {
+    int i = 0;
+
+    if (format_f->hash)
+        i++;
     if ((format_f->precision) > 0)
-        for (int i = 0; i < (format_f->precision); i++)
+        for (; i < (format_f->precision); i++)
             my_putchar('0');
 }
 
