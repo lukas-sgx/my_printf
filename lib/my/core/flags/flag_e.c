@@ -50,7 +50,7 @@ static int value_neg(double nb, int count, int upper)
     return count;
 }
 
-static int my_putscientific(int nb , int count, int upper)
+static int my_putscientific(double nb, int count, int upper)
 {
     if (nb < 0) {
         my_putchar('-');
