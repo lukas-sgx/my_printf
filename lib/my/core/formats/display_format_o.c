@@ -62,7 +62,7 @@ int display_format_str_o(char *nb,
     int pad = (format_f->width > len + precision)
         ? format_f->width - (len + precision) : 0;
 
-    if (format_f->hash)
+    if (format_f->hash && !format_f->zero)
         my_putstr("0");
     format_f->precision = precision;
     select_min(format_f, pad);

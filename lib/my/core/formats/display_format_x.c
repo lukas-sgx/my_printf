@@ -61,10 +61,13 @@ int display_format_str(char *nb,
     int pad = (format_f->width > len + precision)
         ? format_f->width - (len + precision) : 0;
 
-    if (format_f->hash && upper)
+    if (format_f->hash && upper) {
         my_putstr("0X");
-    else if (format_f->hash && !upper)
+        pad -= 2;
+    } else if (format_f->hash && !upper) {
         my_putstr("0x");
+        pad -= 2;
+    }
     format_f->precision = precision;
     select_min(format_f, pad);
     *count += my_putstr(nb);
