@@ -70,6 +70,14 @@ int display_format_dlint(long long int nb,
     format_flags_t *format_f, int *count);
 int display_format_str(char *nb,
     format_flags_t *format_f, int *count, int upper);
+int display_format_uint(unsigned int nb,
+    format_flags_t *format_f, int *count);
+int display_format_ulint(unsigned long int nb,
+    format_flags_t *format_f, int *count);
+int display_format_udlint(unsigned long long int nb,
+    format_flags_t *format_f, int *count);
+int display_format_str_o(char *nb,
+    format_flags_t *format_f, int *count);
 
 int my_printf(const char *format, ...);
 #endif

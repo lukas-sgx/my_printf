@@ -34,4 +34,7 @@ char *float_to_str(double nb, int precision);
 int count_int(int nb);
 int count_lint(long int nb);
 int count_dlint(long long int nb);
+int count_udlint(unsigned long long int nb);
+int count_ulint(unsigned long int nb);
+int count_uint(unsigned int nb);
 #endif

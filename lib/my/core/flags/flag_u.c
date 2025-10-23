@@ -8,33 +8,33 @@
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
-static void llunsigned(va_list params, int *count, length_mod_t mod)
+static void llunsigned(va_list params, int *count, format_flags_t *format_f)
 {
     unsigned long long arg;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_LL:
             arg = va_arg(params, unsigned long long);
-            *count += my_put_llunsigned(arg);
+            display_format_udlint(arg, format_f, count);
             break;
         default:
             break;
     }
 }
 
-static void lunsigned(va_list params, int *count, length_mod_t mod)
+static void lunsigned(va_list params, int *count, format_flags_t *format_f)
 {
     unsigned long arg;
 
-    switch (mod) {
+    switch (format_f->mod) {
         case MOD_L:
             arg = va_arg(params, unsigned long);
-            *count += my_put_lunsigned(arg);
+            display_format_ulint(arg, format_f, count);
             break;
         default:
             break;
     }
-    llunsigned(params, count, mod);
+    llunsigned(params, count, format_f);
 }
 
 int flag_u_d(va_list params, int count, format_flags_t *format_f)
@@ -44,19 +44,19 @@ int flag_u_d(va_list params, int count, format_flags_t *format_f)
     switch (format_f->mod) {
         case MOD_NONE:
             arg = va_arg(params, unsigned int);
-            count += my_put_unsigned(arg);
+            display_format_uint(arg, format_f, &count);
             break;
         case MOD_H:
             arg = va_arg(params, unsigned int);
-            count += my_put_unsigned((unsigned short)arg);
+            display_format_uint((unsigned short)arg, format_f, &count);
             break;
         case MOD_HH:
             arg = va_arg(params, unsigned int);
-            count += my_put_unsigned((unsigned char)arg);
+            display_format_uint((unsigned char)arg, format_f, &count);
             break;
         default:
             break;
     }
-    lunsigned(params, &count, format_f->mod);
+    lunsigned(params, &count, format_f);
     return count;
 }
