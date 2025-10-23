@@ -10,7 +10,7 @@
 #include "../../../../include/myprintf.h"
 #include "../../../../include/my.h"
 
-static int value_pos(double nb, int count)
+static int value_pos(double nb, int count, int upper)
 {
     int e = 0;
 
@@ -19,7 +19,10 @@ static int value_pos(double nb, int count)
         e++;
     }
     my_putfloat(nb, 6);
-    my_putchar('e');
+    if (upper)
+        my_putchar('E');
+    else
+        my_putchar('e');
     my_putchar('+');
     if (e < 10)
         my_putchar('0');
@@ -27,7 +30,7 @@ static int value_pos(double nb, int count)
     return count;
 }
 
-static int value_neg(double nb, int count)
+static int value_neg(double nb, int count, int upper)
 {
     int e = 0;
 
@@ -36,7 +39,10 @@ static int value_neg(double nb, int count)
         e++;
     }
     my_putfloat(nb, 6);
-    my_putchar('e');
+    if (upper)
+        my_putchar('E');
+    else
+        my_putchar('e');
     my_putchar('-');
     if (e < 10)
         my_putchar('0');
@@ -53,9 +59,9 @@ int flag_eupper_d(va_list params, int count, format_flags_t *format_f)
         nb = -nb;
     }
     if (nb < 1.0)
-        return value_neg(nb, count);
+        return value_neg(nb, count, 1);
     if (nb > 1.0)
-        return value_pos(nb, count);
+        return value_pos(nb, count, 1);
     return count;
 }
 
@@ -68,8 +74,8 @@ int flag_e_d(va_list params, int count, format_flags_t *format_f)
         nb = -nb;
     }
     if (nb < 1.0)
-        return value_neg(nb, count);
+        return value_neg(nb, count, 0);
     if (nb > 1.0)
-        return value_pos(nb, count);
+        return value_pos(nb, count, 0);
     return count;
 }

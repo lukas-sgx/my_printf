@@ -133,15 +133,13 @@ Test(my_printf, precision_star_int, .init=redirect_all_std)
 Test(my_printf, float_scientific_e, .init=redirect_all_std)
 {
     my_printf("%e", 1234.5678);
-    const char *out = cr_get_redirected_stdout();
-    cr_assert(strstr(out, "1.234567e+03") != NULL);
+    cr_assert_stdout_eq_str("1.234568e+03");
 }
 
 Test(my_printf, float_scientific_E, .init=redirect_all_std)
 {
     my_printf("%E", 1234.5678);
-    const char *out = cr_get_redirected_stdout();
-    cr_assert(strstr(out, "1.234567E+03") != NULL);
+    cr_assert_stdout_eq_str("1.234568E+03");
 }
 
 Test(my_printf, float_g, .init=redirect_all_std)
