@@ -14,7 +14,7 @@ static void md_ll(va_list params, int *count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_LL:
-            *count += display_format_dlint(va_arg(params, long long int),
+            display_format_dlint(va_arg(params, long long int),
                 format_f, count);
             break;
         default:
@@ -26,7 +26,7 @@ static void md_l(va_list params, int *count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_L:
-            *count += display_format_lint(va_arg(params, long int),
+            display_format_lint(va_arg(params, long int),
                 format_f, count);
             break;
         default:
@@ -39,7 +39,7 @@ static void md_hh(va_list params, int *count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_HH:
-            *count += display_format_int((signed char)va_arg(params, int),
+            display_format_int((signed char)va_arg(params, int),
                 format_f, count);
             break;
         default:
@@ -52,7 +52,7 @@ static void md_h(va_list params, int *count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_H:
-            *count += display_format_int((short)va_arg(params, int),
+            display_format_int((short)va_arg(params, int),
                 format_f, count);
             break;
         default:
@@ -65,7 +65,7 @@ static void md_none(va_list params, int *count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_NONE:
-            *count += display_format_int(va_arg(params, int), format_f, count);
+            display_format_int(va_arg(params, int), format_f, count);
             break;
         default:
             break;

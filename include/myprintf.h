@@ -68,6 +68,8 @@ int display_format_lint(long int nb,
     format_flags_t *format_f, int *count);
 int display_format_dlint(long long int nb,
     format_flags_t *format_f, int *count);
+int display_format_str(char *nb,
+    format_flags_t *format_f, int *count, int upper);
 
 int my_printf(const char *format, ...);
 #endif
