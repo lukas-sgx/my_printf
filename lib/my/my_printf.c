@@ -77,10 +77,18 @@ static void check_format(char const *format, format_flags_t *format_flags,
 
 static void add_width(char const *format, format_flags_t *format_flags, int *i)
 {
+    if (format[*i - 1] == '0') {
+        (*i)--;
+        format_flags->zero = 0;
+    }
+    if (format[*i - 1] == ' ' || format_flags->minus)
+        format_flags->zero = 0;
     while (format[*i] >= '0' && format[*i] <= '9') {
         format_flags->width = format_flags->width * 10 + (format[*i] - '0');
         (*i)++;
     }
+    if (format_flags->width > 0)
+        format_flags->zero = 0;
 }
 
 static void add_precision(char const *format, format_flags_t *format_flags,
