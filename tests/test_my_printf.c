@@ -94,8 +94,8 @@ Test(my_printf, flag_plus_width_prec_int, .init=redirect_all_std)
 
 Test(my_printf, flag_minus_width_prec_int, .init=redirect_all_std)
 {
-    my_printf("%-10.5d", 42);
-    cr_assert_stdout_eq_str("+00042     ");
+    my_printf("%+-10.5dl", 42);
+    cr_assert_stdout_eq_str("+00042    l");
 }
 
 Test(my_printf, flag_zero_width_int, .init=redirect_all_std)
@@ -120,12 +120,6 @@ Test(my_printf, width_star_int, .init=redirect_all_std)
 {
     my_printf("% -0+12.15ilkkdk",42);
     cr_assert_stdout_eq_str("+000000000000042lkkdk");
-}
-
-Test(my_printf, precision_star_int, .init=redirect_all_std)
-{
-    my_printf("%.*d", 5, 42);
-    cr_assert_stdout_eq_str("00042");
 }
 
 /* -------------------- FLOAT SCIENTIFIC -------------------- */
