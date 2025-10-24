@@ -12,10 +12,19 @@
 static double round_double(double nb, int precision)
 {
     int power = 1;
+
     for (int i = 0; i < precision; i++)
         power *= 10;
     nb = (int)(nb * power + 0.5);
     return nb / (double)power;
+}
+
+static void isupper(int upper)
+{
+    if (upper)
+        my_putchar('E');
+    else
+        my_putchar('e');
 }
 
 static int value_pos(double nb, int count, int upper, format_flags_t *format_f)
@@ -33,10 +42,7 @@ static int value_pos(double nb, int count, int upper, format_flags_t *format_f)
         my_putfloat(nb, format_f->precision);
     if (format_f->hash && format_f->precision == -2)
         my_putchar('.');
-    if (upper)
-        my_putchar('E');
-    else
-        my_putchar('e');
+    isupper(upper);
     my_putchar('+');
     if (e < 10)
         my_putchar('0');
@@ -53,16 +59,13 @@ static int value_neg(double nb, int count, int upper, format_flags_t *format_f)
         e++;
     }
     nb = round_double(nb, format_f->precision);
-    if (nb == 1.0 && !format_f->hash)
+    if (nb == 1.0 && format_f->precision != -2)
         my_putfloat(nb, 5);
     else
         my_putfloat(nb, format_f->precision);
     if (format_f->hash && format_f->precision == -2)
         my_putchar('.');
-    if (upper)
-        my_putchar('E');
-    else
-        my_putchar('e');
+    isupper(upper);
     my_putchar('-');
     if (e < 10)
         my_putchar('0');
@@ -70,7 +73,8 @@ static int value_neg(double nb, int count, int upper, format_flags_t *format_f)
     return count;
 }
 
-static int my_putscientific(double nb, int count, int upper, format_flags_t *format_f)
+static int my_putscientific(double nb, int count,
+    int upper, format_flags_t *format_f)
 {
     if (nb < 0) {
         my_putchar('-');
@@ -136,7 +140,8 @@ static void display_minus(long long int nb, format_flags_t *format_f, int pad)
             my_putchar(' ');
 }
 
-int display_format_double_e(double nb, format_flags_t *format_f, int *count)
+int display_format_double_e(double nb, format_flags_t *format_f,
+    int *count, int upper)
 {
     int len = count_double(nb, format_f->precision);
     int sign = (nb < 0 || format_f->plus || format_f->space)
@@ -154,7 +159,7 @@ int display_format_double_e(double nb, format_flags_t *format_f, int *count)
         pad--;
     }
     select_char(&sign_char, nb, format_f, pad);
-    *count += my_putscientific(nb < 0 ? -nb : nb, *count, 1, format_f);
+    *count += my_putscientific(nb < 0 ? -nb : nb, *count, upper, format_f);
     display_minus(nb, format_f, pad);
     return *count;
 }

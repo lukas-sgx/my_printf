@@ -81,7 +81,8 @@ int display_format_str_o(char *nb,
 int display_format_double(double nb,
     format_flags_t *format_f, int *count);
 int count_double(double nb, int precision);
-int display_format_double_e(double nb, format_flags_t *format_f, int *count);
+int display_format_double_e(double nb,
+    format_flags_t *format_f, int *count, int upper);
 
 int my_printf(const char *format, ...);
 #endif

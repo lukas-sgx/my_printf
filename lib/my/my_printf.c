@@ -91,7 +91,8 @@ static void add_precision(char const *format, format_flags_t *format_flags,
 {
     if (format[*i] == '.') {
         (*i)++;
-        if (format[*i] == 'f' || format[*i] == 'F' || format[*i] == 'E') {
+        if (format[*i] == 'f' || format[*i] == 'F' ||
+            format[*i] == 'E' || format[*i] == 'e') {
             format_flags->precision = -2;
             return;
         }
@@ -101,7 +102,8 @@ static void add_precision(char const *format, format_flags_t *format_flags,
                 (format[*i] - '0');
             (*i)++;
         }
-    } else if (format[*i] == 'f' || format[*i] == 'F' || format[*i] == 'E') {
+    } else if (format[*i] == 'f' || format[*i] == 'F' ||
+        format[*i] == 'E' || format[*i] == 'e') {
         format_flags->precision = -1;
     }
 }
