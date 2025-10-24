@@ -13,5 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install
+      run: wget -O - "http://dumpscript.epitest.eu" | sudo bash -s
     - name: Unit Tests
       run: make tests_run
