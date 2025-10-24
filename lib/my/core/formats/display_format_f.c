@@ -77,8 +77,10 @@ int display_format_double(double nb, format_flags_t *format_f, int *count)
         pad -= 7;
     select_char(&sign_char, nb, format_f, pad);
     *count += my_putfloat(nb < 0 ? -nb : nb, format_f->precision);
-    if (format_f->hash && format_f->precision == 0)
+    if (format_f->hash && format_f->precision == -2) {
         my_putchar('.');
+        pad--;
+    }
     display_minus(nb, format_f, pad);
     return *count;
 }
