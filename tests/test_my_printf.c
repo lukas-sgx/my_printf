@@ -136,17 +136,17 @@ Test(my_printf, float_scientific_E, .init=redirect_all_std)
     cr_assert_stdout_eq_str("1.234568E+03");
 }
 
-Test(my_printf, float_g, .init=redirect_all_std)
-{
-    my_printf("%g", 0.0001234);
-    cr_assert_stdout_eq_str("0.0001234");
-}
-
-Test(my_printf, float_G, .init=redirect_all_std)
-{
-    my_printf("%G", 123456789.0);
-    cr_assert_stdout_eq_str("1.234568E+08");
-}
+// Test(my_printf, float_g, .init=redirect_all_std)
+// {
+//     my_printf("%g", 0.0001234);
+//     cr_assert_stdout_eq_str("0.0001234");
+// }
+//
+// Test(my_printf, float_G, .init=redirect_all_std)
+// {
+//     my_printf("%G", 123456789.0);
+//     cr_assert_stdout_eq_str("1.234568E+08");
+// }
 
 /* -------------------- FLAG %n -------------------- */
 

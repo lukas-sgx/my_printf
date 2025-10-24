@@ -72,3 +72,4 @@ unit_tests: fclean all
 
 tests_run: unit_tests
 	./$(TEST)
+	gcovr --gcov-executable "llvm-cov-20 gcov" --exclude $(TEST)
