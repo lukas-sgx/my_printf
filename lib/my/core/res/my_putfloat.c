@@ -9,7 +9,7 @@
 
 #include "../../../../include/my.h"
 
-void to_neg(double *nb, int *count)
+static void to_neg(double *nb, int *count)
 {
     if (*nb < 0) {
         my_putchar('-');
@@ -18,7 +18,7 @@ void to_neg(double *nb, int *count)
     }
 }
 
-void int_state(long long int power, int *count,
+static void int_state(long long int power, int *count,
     long long int *frac_part, int *int_part)
 {
     if (*frac_part >= power) {
@@ -28,7 +28,7 @@ void int_state(long long int power, int *count,
     *count += my_put_nbr(*int_part);
 }
 
-void init_var(double *frac, double nb, int *int_part)
+static void init_var(double *frac, double nb, int *int_part)
 {
     *int_part = (int) nb;
     *frac = nb - (double) *int_part;

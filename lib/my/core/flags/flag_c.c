@@ -12,14 +12,15 @@ int char_d(va_list params, int count, format_flags_t *format_f)
 {
     switch (format_f->mod) {
         case MOD_NONE:
-            my_putchar(va_arg(params, int));
+            display_format_c(va_arg(params, int), format_f, &count);
             break;
         case MOD_H:
-            my_putchar((short)va_arg(params, int));
+            display_format_c((short)va_arg(params, int), format_f, &count);
         case MOD_HH:
-            my_putchar((signed char)va_arg(params, int));
+            display_format_c((signed char) va_arg(params, int),
+                format_f, &count);
         case MOD_L:
-            my_putwchar(va_arg(params, unsigned int));
+            display_format_wc(va_arg(params, unsigned int), format_f, &count);
         default:
             break;
     }

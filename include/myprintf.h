@@ -83,6 +83,14 @@ int display_format_double(double nb,
 int count_double(double nb, int precision);
 int display_format_double_e(double nb,
     format_flags_t *format_f, int *count, int upper);
+int display_format_c(char c, format_flags_t *format_f,
+    int *count);
+int display_format_wc(unsigned int c, format_flags_t *format_f,
+    int *count);
+int display_format_s(char *c, format_flags_t *format_f,
+    int *count);
+int display_format_ws(unsigned int *c, format_flags_t *format_f,
+    int *count);
 
 int my_printf(const char *format, ...);
 #endif

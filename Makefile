@@ -49,6 +49,9 @@ SRC = ./lib/my/my_printf.c \
 	./lib/my/core/formats/display_format_o.c\
 	./lib/my/core/formats/display_format_f.c\
 	./lib/my/core/formats/display_format_e.c\
+	./lib/my/core/formats/display_format_c.c\
+	./lib/my/core/formats/display_format_s.c\
+	./lib/my/core/formats/display_format_percent.c\
 	./bonus/flag_s_upper.c
 
 OBJ = $(SRC:.c=.o)
